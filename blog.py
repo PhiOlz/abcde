@@ -136,7 +136,7 @@ class CommentPost(webapp2.RequestHandler):
             if post: 
                 post.count_comment += 1;
                 post.put()
-            self.redirect('/blog/%s' % str(post.key().id()))
+                self.redirect('/blog/%s' % str(post.key().id()))
             else:
                 error = "comment, please!"
                 coms = getcomments(post_id)
