@@ -1,5 +1,5 @@
-application: udblog
-version: v1
+application: applied-city-152508
+version: 1
 runtime: python27
 api_version: 1
 threadsafe: yes
