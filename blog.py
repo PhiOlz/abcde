@@ -60,6 +60,7 @@ class PostPage(webapp2.RequestHandler):
             self.response.out.write(t.render(p=post))
 class NewPost(webapp2.RequestHandler):
     def get(self, post_id):
+        post=None
         if int(post_id) > 0 :
             key = db.Key.from_path('Post', int(post_id), parent=blog_key())
             post = db.get(key)
