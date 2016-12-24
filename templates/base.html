@@ -18,9 +18,19 @@
         <tr>
             <td>&nbsp;</td>
             <td align='right'>
-                <a href="/blog/newpost/0"> Post a blog</a>
+                <a href="/blog/newpost/1"> Post a blog</a>
             </td>
-        </tr>        
+        </tr>    
+        <tr>
+            <td>&nbsp;</td>
+            <td align='right'>
+                <form metod="post">
+                    {% for post.subject in post %}
+                    <option>{{post.subject}}</option>
+                    {% endfor %}
+                </form>
+            </td>
+        </tr> 
         <tr><td colspan=2><hr></td></tr>
     </table>
     </header>
