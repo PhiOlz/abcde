@@ -102,6 +102,7 @@ def deletePost(post_id):
             for l in likes:
                 l.delete()
             post.delete()
+    self.redirect('/blog')
 class DelPost(webapp2.RequestHandler):
     def get(self, post_id):
         if int(post_id) > 0 :
@@ -213,7 +214,7 @@ app = webapp2.WSGIApplication([
        ('/', MainPage),
        ('/blog/?', BlogFront),
        ('/blog/([0-9]+)', PostPage),
-       ('/blog/newpost/([0-9]+)', NewPost),
+       ('/blog/newpost/([1-9]+)', NewPost),
        ('/blog/delpost/([0-9]+)', DelPost),
        ('/blog/delcom/([0-9]+)', DelComment),
        ('/blog/editcom/([0-9]+)', EditComment),
