@@ -114,26 +114,24 @@ class DelComment(webapp2.RequestHandler):
         if int(comment_id) > 0 :        
             key = db.Key.from_path('Comments', int(comment_id), parent=blog_key())
             comment = db.get(key)
-                pkey = db.Key.from_path('Post', int(post_id), parent=blog_key())
-                post = db.get(pkey)
-                post.count_comment -= 1
-                post.put()
-                
+            pkey = db.Key.from_path('Post', int(post_id), parent=blog_key())
+            post = db.get(pkey)
+            post.count_comment -= 1
+            post.put()               
         if post_id :
             self.redirect('/blog/comment/' + str(post_id))
-
 class CommentPost(webapp2.RequestHandler):
     def get(self, post_id):
             key = db.Key.from_path('Post', int(post_id), parent=blog_key())
             post = db.get(key)                        
             if post:
-                coms = getcomments(post_id)
-                t = jinja_env.get_template('comment.html')
-                self.response.out.write(t.render(post=post, coms=coms))
+            coms = getcomments(post_id)
+            t = jinja_env.get_template('comment.html')
+            self.response.out.write(t.render(post=post, coms=coms))
     def post(self, post_id):
             comment = self.request.get('comment')
                 com = Comments(parent = blog_key(), 
-                         post_id = int(post_id))
+                post_id = int(post_id))
                 com.put()
                 if post: 
                     post.count_comment += 1;
@@ -156,9 +154,9 @@ class EditComment(webapp2.RequestHandler):
                 self.response.out.write(t.render(post=post, com=com))       
     def post(self, com_id):
             updated_comment = self.request.get('comment')
-                com.comment = updated_comment
-                com.put()
-                self.redirect('/blog/comment/%s' % str(com.post_id))
+            com.comment = updated_comment
+            com.put()
+            self.redirect('/blog/comment/%s' % str(com.post_id))
 class FlushDb(BlogHandler):
     def get(self):
         posts = Post.all()
