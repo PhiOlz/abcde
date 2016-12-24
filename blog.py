@@ -210,7 +210,6 @@ class DumpDb(BlogHandler):
             self.response.out.write("<tr><td>id=101 return None</td></tr>")
 app = webapp2.WSGIApplication([
        ('/', MainPage),
-       ('/blog/welcome', Welcome),
        ('/blog/?', BlogFront),
        ('/blog/([0-9]+)', PostPage),
        ('/blog/newpost/([0-9]+)', NewPost),
