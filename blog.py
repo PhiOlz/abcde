@@ -83,7 +83,7 @@ class NewPost(webapp2.RequestHandler):
                     post = Post(parent = blog_key(), subject = subject, 
                          content = content)
                     post.put()
-                self.redirect('/blog/%s' % str(post.key().id()))
+                self.redirect('/blog')
             else:
                 error = "subject and content, please!"
                 t = jinja_env.get_template('newpost.html')
@@ -120,7 +120,7 @@ class DelComment(webapp2.RequestHandler):
             post.count_comment -= 1
             post.put()               
         if post_id :
-            self.redirect('/blog/comment/' + str(post_id))
+            self.redirect('/blog/')
 class CommentPost(webapp2.RequestHandler):
     def get(self, post_id):
             key = db.Key.from_path('Post', int(post_id), parent=blog_key())
@@ -137,7 +137,7 @@ class CommentPost(webapp2.RequestHandler):
             if post: 
                 post.count_comment += 1;
                 post.put()
-                self.redirect('/blog/%s' % str(post.key().id()))
+                self.redirect('/blog/')
             else:
                 error = "comment, please!"
                 coms = getcomments(post_id)
