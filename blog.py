@@ -49,6 +49,11 @@ class BlogFront(webapp2.RequestHandler):
             posts = db.GqlQuery("select * from Post order by created desc limit 10")
             t = jinja_env.get_template('front.html')
             self.response.out.write(t.render(posts=posts))
+    def search(self):
+            x = self.request.get('search')
+            srch = db.GqlQuery("select * from Post where subject=x")
+            t = jinja_env.get_template('front.html')
+            self.response.out.write(t.render(srch=srch))
 class PostPage(webapp2.RequestHandler):
     def get(self, post_id):
         key = db.Key.from_path('Post', int(post_id), parent=blog_key())
@@ -60,6 +65,7 @@ class PostPage(webapp2.RequestHandler):
             self.response.out.write(t.render(p=post))
 class NewPost(webapp2.RequestHandler):
     def get(self, post_id):
+        post=None
         if int(post_id) > 0 :
             key = db.Key.from_path('Post', int(post_id), parent=blog_key())
             post = db.get(key)
@@ -82,7 +88,7 @@ class NewPost(webapp2.RequestHandler):
                     post = Post(parent = blog_key(), subject = subject, 
                          content = content)
                     post.put()
-                self.redirect('/blog/%s' % str(post.key().id()))
+                self.redirect('/blog')
             else:
                 error = "subject and content, please!"
                 t = jinja_env.get_template('newpost.html')
@@ -101,6 +107,7 @@ def deletePost(post_id):
             for l in likes:
                 l.delete()
             post.delete()
+    self.redirect('/blog')
 class DelPost(webapp2.RequestHandler):
     def get(self, post_id):
         if int(post_id) > 0 :
@@ -117,11 +124,9 @@ class DelComment(webapp2.RequestHandler):
             pkey = db.Key.from_path('Post', int(post_id), parent=blog_key())
             post = db.get(pkey)
             post.count_comment -= 1
-            post.put()
-                
+            post.put()               
         if post_id :
-            self.redirect('/blog/comment/' + str(post_id))
-
+            self.redirect('/blog/')
 class CommentPost(webapp2.RequestHandler):
     def get(self, post_id):
             key = db.Key.from_path('Post', int(post_id), parent=blog_key())
@@ -138,7 +143,7 @@ class CommentPost(webapp2.RequestHandler):
             if post: 
                 post.count_comment += 1;
                 post.put()
-                self.redirect('/blog/%s' % str(post.key().id()))
+                self.redirect('/blog/')
             else:
                 error = "comment, please!"
                 coms = getcomments(post_id)
@@ -209,22 +214,17 @@ class DumpDb(BlogHandler):
         if post:
             self.response.out.write("<tr><td>id=101 returns post</td></tr>")
         else :
-            self.response.out.write("<tr><td>id=101 return None</td></tr>")
+            self.response.out.write("<tr><td>id=101 return None</td></tr>")          
 app = webapp2.WSGIApplication([
        ('/', MainPage),
-       ('/blog/logout', Logout),
-       ('/blog/login', Login),
-       ('/blog/signup', Signup),
-       ('/blog/welcome', Welcome),
        ('/blog/?', BlogFront),
        ('/blog/([0-9]+)', PostPage),
-       ('/blog/newpost/([0-9]+)', NewPost),
+       ('/blog/newpost/([1-9]+)', NewPost),
        ('/blog/delpost/([0-9]+)', DelPost),
        ('/blog/delcom/([0-9]+)', DelComment),
        ('/blog/editcom/([0-9]+)', EditComment),
-       ('/blog/likepost/([0-9]+)', LikePost),
-       ('/blog/comment/([0-9]+)', CommentPost), # post_id as a param
+       ('/blog/comment/([0-9]+)', CommentPost),
        ('/blog/flushdb', FlushDb),
-       ('/blog/dumpdb', DumpDb),       
+       ('/blog/dumpdb', DumpDb),
        ],
       debug=True)
