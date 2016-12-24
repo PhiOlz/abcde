@@ -130,13 +130,13 @@ class CommentPost(webapp2.RequestHandler):
                 self.response.out.write(t.render(post=post, coms=coms))
     def post(self, post_id):
             comment = self.request.get('comment')
-                com = Comments(parent = blog_key(), 
-                post_id = int(post_id))
-                com.put()
-                if post: 
-                    post.count_comment += 1;
-                    post.put()
-                self.redirect('/blog/%s' % str(post.key().id()))
+            com = Comments(parent = blog_key(), 
+            post_id = int(post_id))
+            com.put()
+            if post: 
+                post.count_comment += 1;
+                post.put()
+            self.redirect('/blog/%s' % str(post.key().id()))
             else:
                 error = "comment, please!"
                 coms = getcomments(post_id)
