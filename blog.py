@@ -125,9 +125,9 @@ class CommentPost(webapp2.RequestHandler):
             key = db.Key.from_path('Post', int(post_id), parent=blog_key())
             post = db.get(key)                        
             if post:
-            coms = getcomments(post_id)
-            t = jinja_env.get_template('comment.html')
-            self.response.out.write(t.render(post=post, coms=coms))
+                coms = getcomments(post_id)
+                t = jinja_env.get_template('comment.html')
+                self.response.out.write(t.render(post=post, coms=coms))
     def post(self, post_id):
             comment = self.request.get('comment')
                 com = Comments(parent = blog_key(), 
