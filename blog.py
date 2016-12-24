@@ -106,7 +106,7 @@ class DelPost(webapp2.RequestHandler):
         if int(post_id) > 0 :
             key = db.Key.from_path('Post', int(post_id), parent=blog_key())
             post = db.get(key)
-                deletePost(post.key().id())
+            deletePost(post.key().id())
 class DelComment(webapp2.RequestHandler):
     def get(self, comment_id):
         comment=None
@@ -212,9 +212,6 @@ class DumpDb(BlogHandler):
             self.response.out.write("<tr><td>id=101 return None</td></tr>")
 app = webapp2.WSGIApplication([
        ('/', MainPage),
-       ('/blog/logout', Logout),
-       ('/blog/login', Login),
-       ('/blog/signup', Signup),
        ('/blog/welcome', Welcome),
        ('/blog/?', BlogFront),
        ('/blog/([0-9]+)', PostPage),
@@ -222,8 +219,7 @@ app = webapp2.WSGIApplication([
        ('/blog/delpost/([0-9]+)', DelPost),
        ('/blog/delcom/([0-9]+)', DelComment),
        ('/blog/editcom/([0-9]+)', EditComment),
-       ('/blog/likepost/([0-9]+)', LikePost),
-       ('/blog/comment/([0-9]+)', CommentPost), # post_id as a param
+       ('/blog/comment/([0-9]+)', CommentPost),
        ('/blog/flushdb', FlushDb),
        ('/blog/dumpdb', DumpDb),       
        ],
