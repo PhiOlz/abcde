@@ -208,8 +208,8 @@ class Search(webapp2.RequestHandler):
         posts = db.GqlQuery("SELECT * FROM Post")
         self.response.write("""<table><tr>""")
         for p in posts:
-            self.response.write('<td><a href="/blog/comment/%s">' % comment.post_id)
-            self.response.write('%s</a></td>' % p.subject)
+            self.response.write('<td><a href="/blog/comment/%s">' % post_id)
+            self.response.write('%s</a></td>' % subject)
         self.response.write("""</tr></table><br><br>""")
             
 app = webapp2.WSGIApplication([
