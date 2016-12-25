@@ -137,6 +137,7 @@ class CommentPost(webapp2.RequestHandler):
                 self.response.out.write(t.render(post=post, coms=coms))
     def post(self, post_id):
             comment = self.request.get('comment')
+            u='u'
             com = Comments(parent = blog_key(), post_id = int(post_id), user_id=u, comment = comment)
             com.put()
             if post: 
