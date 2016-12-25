@@ -20,7 +20,17 @@
             <td align='right'>
                 <a href="/blog/newpost/1"> Post a blog</a>
             </td>
-        </tr>    
+        </tr>  
+        <tr>
+            <td>&nbsp;</td>
+            <td align='right'>
+                <form method="post">
+                    {% for p in posts %}
+                    <option name="srch">{{p.subject}}</option>
+                    {% endfor %}
+                <input type="submit"></form>
+            </td>
+        </tr>
         <tr><td colspan=2><hr></td></tr>
     </table>
     </header>
