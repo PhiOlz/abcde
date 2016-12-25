@@ -155,9 +155,9 @@ class Search(webapp2.RequestHandler):
     def get(self):
         posts = db.GqlQuery("select * from Comments")
         for p in posts:
-            self.response.out.write('<a href="/blog/comment/%s">' % str(p.post_id))
-            self.response.out.write('%s' % str(Post.subject))
-            self.response.out.write('</a>')
+            self.response.out.write('<a href="')
+            self.response.out.write('/blog/comment/%s' % str(p.post_id))
+            self.response.out.write('"</a>')
 class FlushDb(BlogHandler):
     def get(self):
         posts = Post.all()
