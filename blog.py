@@ -155,7 +155,7 @@ class Search(webapp2.RequestHandler):
     def get(self):
         posts = db.GqlQuery("select * from Post")
         for p in posts:
-            self.response.out.write('/blog/comment/%s' % int(posts.post_id))     
+            self.response.out.write('/blog/comment/%s' % str(p.post_id))     
 class FlushDb(BlogHandler):
     def get(self):
         posts = Post.all()
