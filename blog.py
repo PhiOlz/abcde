@@ -153,12 +153,10 @@ class EditComment(webapp2.RequestHandler):
             self.redirect('/blog/comment/%s' % str(com.post_id))
 class Search(webapp2.RequestHandler):
     def get(self):
-        posts = db.GqlQuery("select * from Comments")
-        for p in posts:
-            self.response.out.write('<a href="')
-            self.response.out.write('/blog/comment/%s' % str(p.post_id))
-            self.response.out.write('"%s</a>' % str(post.subject)
-                                    
+        posts = db.GqlQuery("select * from Post order by created desc limit 10")
+        t = jinja_env.get_template('front2.html')
+        self.response.out.write(t.render(posts=posts))
+        
 class FlushDb(BlogHandler):
     def get(self):
         posts = Post.all()
