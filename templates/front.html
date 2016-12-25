@@ -1,10 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
-
+<form method="post">
+  {% for p in posts %}
+  <option name="srch"> {{p.subject}}</option>
+  {% endfor %}
+  <input type="submit"></form>
   {% for p in posts %}
     {{ p.render(u) | safe }}
     <br><br>
   {% endfor %}
+  
 
 {% endblock %}
