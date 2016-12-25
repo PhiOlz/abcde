@@ -1,11 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<form method="post">
-  {% for p in posts %}
-  <option name="srch"> {{p.subject}}</option>
-  {% endfor %}
-  <input type="submit"></form>
+<a herf="/blog/search">Search</a>
   {% for p in posts %}
     {{ p.render(u) | safe }}
     <br><br>
