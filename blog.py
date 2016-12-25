@@ -41,7 +41,7 @@ def render_post(response, post):
         response.out.write(post.content)
 class MainPage(BlogHandler):
   def get(self):
-      self.write('Hello, World!')
+      self.redirect('/blog')
 def blog_key(name = 'default'):
     return db.Key.from_path('blogs', name)     
 class BlogFront(webapp2.RequestHandler):
