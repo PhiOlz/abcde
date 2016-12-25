@@ -155,7 +155,7 @@ class Search(webapp2.RequestHandler):
     def get(self):
         self.post = Post.all()
         self.response.write('<html>')
-        for self.comment in self.query:
+        for self.comment in self.post:
             self.response.write('<p1>%s</p1>' % self.comment.subject)
         self.response.write('</html>')
             
