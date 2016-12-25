@@ -205,7 +205,7 @@ class DumpDb(BlogHandler):
 
 class Search(self):
     def get(self):
-        p = db.GqlQuery("select subject from Post')
+        p = db.GqlQuery("select subject from Post")
         post = db.GqlQuery("select * from Post")
         self.response.write('Search Here: ')
         self.response.write("""<form method="post"><select name="sch">""")
