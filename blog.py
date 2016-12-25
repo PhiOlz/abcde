@@ -208,7 +208,7 @@ class Search(webapp2.RequestHandler):
         posts = db.GqlQuery("SELECT * FROM Post")
         self.response.write("""<table><tr>""")
         for p in posts:
-            self.response.write('<td><a href="/blog/comment/%s' % p.post_id)
+            self.response.write('<td><a href="/blog/comment/%s' % c.post_id)
             self.response.write('"%s</a></td>' % p.subject)
         self.response.write("""</tr></table><br><br>""")
             
