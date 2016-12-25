@@ -217,12 +217,6 @@ class Search(webapp2.RequestHandler):
         t = jinja_env.get_template('front.html')
         self.response.out.write(t.render(posts=posts))
             
-            
-            
-            
-            
-            
-            
 app = webapp2.WSGIApplication([
        ('/', MainPage),
        ('/blog/?', BlogFront),
