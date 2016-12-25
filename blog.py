@@ -158,6 +158,8 @@ class Search(webapp2.RequestHandler):
             self.response.out.write('<a href="')
             self.response.out.write('/blog/comment/%s' % str(p.post_id))
             self.response.out.write('"%s</a>' % str(post.subject)
+                                    
+                                    
 class FlushDb(BlogHandler):
     def get(self):
         posts = Post.all()
