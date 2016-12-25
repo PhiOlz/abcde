@@ -157,9 +157,9 @@ class Search(webapp2.RequestHandler):
         t = jinja_env.get_template("post2.html")
         return t.render(p2 = self)
     def get(self):
-        posts = db.GqlQuery("select * from Post order by created desc limit 10")
+        posts = db.GqlQuery("select * from Post")
         t2 = jinja_env.get_template('post2.html')
-        self.response.out.write(t2.render(posts=posts))
+        self.response.out.write(t2.render(p2=posts))
         
 class FlushDb(BlogHandler):
     def get(self):
