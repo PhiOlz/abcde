@@ -140,15 +140,9 @@ class CommentPost(webapp2.RequestHandler):
             u=123456789
             com = Comments(parent = blog_key(), post_id = int(post_id), user_id=u, comment = comment)
             com.put()
-            if post: 
-                post.count_comment += 1;
-                post.put()
-                self.redirect('/blog/')
-            else:
-                error = "comment, please!"
-                coms = getcomments(post_id)
-                t = jinja_env.get_template('comment.html')
-                self.response.out.write(t.render(posts=posts, coms=coms))
+            post.count_comment += 1;
+            post.put()
+            self.redirect('/blog/')
 class EditComment(webapp2.RequestHandler):
     def get(self, comment_id):
         if int(comment_id) > 0:
