@@ -201,8 +201,15 @@ class DumpDb(BlogHandler):
         if post:
             self.response.out.write("<tr><td>id=101 returns post</td></tr>")
         else :
-            self.response.out.write("<tr><td>id=101 return None</td></tr>")          
-
+            self.response.out.write("<tr><td>id=101 return None</td></tr>")    
+            
+class Search(webapp2.RequestHandler)
+    def get(self):
+        self.response.write("""<table><tr>""")
+        for p in posts:
+            self.response.write("""<td><a href="/blog/comment/%s">""", % com.post_id)
+            self.response.write("""%s</a></td>""", % p.subject)
+        self.response.write("""</tr></table><br><br>""")
             
 app = webapp2.WSGIApplication([
        ('/', MainPage),
@@ -215,6 +222,6 @@ app = webapp2.WSGIApplication([
        ('/blog/comment/([0-9]+)', CommentPost),
        ('/blog/flushdb', FlushDb),
        ('/blog/dumpdb', DumpDb),
-       #('/blog/search', Search),
+       ('/blog/search', Search),
        ],
       debug=True)
