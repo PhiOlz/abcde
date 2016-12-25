@@ -1,5 +1,4 @@
 <div class="post">
-  <a href='/blog/comment/{{p.key().id()}}'>
   <div class="post-heading">
     <div class="post-title">
       {{p.subject}}
@@ -9,5 +8,17 @@
       {{p.created.strftime("%b %d, %Y")}}
     </div>
   </div>
-    </a>
+
+  <div class="post-content">
+    {{p._render_text | safe}}
+  </div>
+  <div class="post-footer">
+    <!--<form action='/blog/comment' method='get'> -->
+    <!-- Blogger can edit his own blog. Others can like and comment -->
+        <div class="post-comment">
+                &nbsp;&nbsp;&nbsp;
+                <a href='/blog/comment/{{p.key().id()}}'>Go To</a>
+        </div>
+    <!-- </form> -->
+  </div>
 </div>
