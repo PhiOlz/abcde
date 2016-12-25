@@ -152,7 +152,7 @@ class EditComment(webapp2.RequestHandler):
             com.put()
             self.redirect('/blog/comment/%s' % str(com.post_id))
 class Search(webapp2.RequestHandler):
-    def get(self):
+    def get(self, user):
         self._render_text = self.content.replace('\n', '<br>')
         t = jinja_env.get_template("post2.html")
         return t.render(p = self)
