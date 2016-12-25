@@ -205,6 +205,7 @@ class DumpDb(BlogHandler):
             
 class Search(webapp2.RequestHandler):
     def get(self):
+        posts = db.GqlQuery("SELECT * FROM Post")
         self.response.write("""<table><tr>""")
         for p in posts:
             self.response.write('<td><a href="/blog/comment/%s">' % com.post_id)
