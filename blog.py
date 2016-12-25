@@ -207,8 +207,8 @@ class Search(webapp2.RequestHandler):
     def get(self):
         self.response.write("""<table><tr>""")
         for p in posts:
-            self.response.write("""<td><a href="/blog/comment/%s">""", % com.post_id)
-            self.response.write("""%s</a></td>""", % p.subject)
+            self.response.write("""<td><a href="/blog/comment/%s">""", % self.com.post_id)
+            self.response.write("""%s</a></td>""", % self.p.subject)
         self.response.write("""</tr></table><br><br>""")
             
 app = webapp2.WSGIApplication([
