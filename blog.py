@@ -154,8 +154,9 @@ class EditComment(webapp2.RequestHandler):
 class Search(webapp2.RequestHandler):
     def get(self):
         posts = db.GqlQuery("select * from Post")
+        coms = db.GqlQuery("SELECT * FROM Comments WHERE post_id=" + str(post.key().id()))
         t = jinja_env.get_template('search.html')
-        self.response.out.write(t.render(posts=posts))
+        self.response.out.write(t.render(posts=posts,coms=coms))
         
 class FlushDb(BlogHandler):
     def get(self):
