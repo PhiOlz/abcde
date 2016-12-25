@@ -152,15 +152,13 @@ class EditComment(webapp2.RequestHandler):
             com.put()
             self.redirect('/blog/comment/%s' % str(com.post_id))
 class Search(webapp2.RequestHandler):
-    #def render(self, user):
-        #self._render_text = self.content.replace('\n', '<br>')
-        #t = jinja_env.get_template("post2.html")
-        #return t.render(p2 = self)
     def get(self):
-        posts = db.GqlQuery("select * from Post")
-        t2 = jinja_env.get_template('front2.html')
-        self.response.out.write(t2.render(posts=posts))
-        
+        self.post = Post.all()
+        self.response.write('<html>')
+        for self.comment in self.query:
+            self.response.write('<p1>%s</p1>' % self.comment.subject)
+        self.response.write('</html>')
+            
 class FlushDb(BlogHandler):
     def get(self):
         posts = Post.all()
@@ -224,6 +222,6 @@ app = webapp2.WSGIApplication([
        ('/blog/comment/([0-9]+)', CommentPost),
        ('/blog/flushdb', FlushDb),
        ('/blog/dumpdb', DumpDb),
-       ('/blog/post2', Search),
+       ('/blog/search', Search),
        ],
       debug=True)
