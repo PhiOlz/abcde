@@ -6,11 +6,11 @@
 <div class="post">
   <div class="post-heading">
     <div class="post-title">
-      {{p.subject}}
+      {{posts.subject}}
     </div>
 
     <div class="post-date">
-      {{p.created.strftime("%b %d, %Y")}}
+      {{posts.created.strftime("%b %d, %Y")}}
     </div>
   </div>
   <div class="post-footer">
@@ -18,7 +18,7 @@
     <!-- Blogger can edit his own blog. Others can like and comment -->
         <div class="post-comment">
                 &nbsp;&nbsp;&nbsp;
-                <a href='/blog/comment/{{p.key().id()}}'>Go To</a>
+                <a href='/blog/comment/{{posts.key().id()}}'>Go To</a>
         </div>
     <!-- </form> -->
   </div>
