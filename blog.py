@@ -151,6 +151,14 @@ class EditComment(webapp2.RequestHandler):
             com.comment = updated_comment
             com.put()
             self.redirect('/blog/comment/%s' % str(com.post_id))
+class Search(webapp2.RequestHandler):
+    def get(self):
+        posts = db.GqlQuery("SELECT * FROM Post")
+        self.response.write("""<table><tr>""")
+        for p in posts:
+            self.response.write('<td><a href="/blog/comment/%s' % post_id)
+            self.response.write('"%s</a></td>' % subject)
+        self.response.write("""</tr></table><br><br>""")           
 class FlushDb(BlogHandler):
     def get(self):
         posts = Post.all()
@@ -202,15 +210,6 @@ class DumpDb(BlogHandler):
             self.response.out.write("<tr><td>id=101 returns post</td></tr>")
         else :
             self.response.out.write("<tr><td>id=101 return None</td></tr>")    
-            
-class Search(webapp2.RequestHandler):
-    def get(self):
-        posts = db.GqlQuery("SELECT * FROM Post")
-        self.response.write("""<table><tr>""")
-        for p in posts:
-            self.response.write('<td><a href="/blog/comment/%s' % post_id)
-            self.response.write('"%s</a></td>' % subject)
-        self.response.write("""</tr></table><br><br>""")
             
 app = webapp2.WSGIApplication([
        ('/', MainPage),
