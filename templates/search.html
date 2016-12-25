@@ -2,10 +2,25 @@
 
 {% block content %}
 
-  {% for p in posts %}
-    {{ p.render(u) | safe }}
-    <br><br>
-  {% endfor %}
+<div class="post">
+  <div class="post-heading">
+    <div class="post-title">
+      {{p.subject}}
+    </div>
+
+
+  </div>
+
+
+  <div class="post-footer">
+    <!--<form action='/blog/comment' method='get'> -->
+    <!-- Blogger can edit his own blog. Others can like and comment -->
+                &nbsp;&nbsp;&nbsp;
+                <a href='/blog/comment/{{p.key().id()}}'>View Comments</a>
+        </div>
+    <!-- </form> -->
+  </div>
+
   
 
 {% endblock %}
