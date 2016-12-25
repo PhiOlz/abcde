@@ -153,7 +153,7 @@ class EditComment(webapp2.RequestHandler):
             self.redirect('/blog/comment/%s' % str(com.post_id))
 class Search(webapp2.RequestHandler):
     def get(self):
-        posts = db.GqlQuery("select * from Post")
+        posts = db.GqlQuery("select * from Comments")
         for p in posts:
             self.response.out.write('/blog/comment/%s' % str(p.post_id))     
 class FlushDb(BlogHandler):
