@@ -215,6 +215,6 @@ app = webapp2.WSGIApplication([
        ('/blog/comment/([0-9]+)', CommentPost),
        ('/blog/flushdb', FlushDb),
        ('/blog/dumpdb', DumpDb),
-       ('/blog/search', Search),
+       #('/blog/search', Search),
        ],
       debug=True)
