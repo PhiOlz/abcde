@@ -203,9 +203,6 @@ class DumpDb(BlogHandler):
         else :
             self.response.out.write("<tr><td>id=101 return None</td></tr>")          
 
-class Search(webapp2.RequestHandler):
-    def get(self):
-        
             
 app = webapp2.WSGIApplication([
        ('/', MainPage),
