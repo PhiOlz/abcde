@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<a herf="/blog/search">Search</a>
+
   {% for p in posts %}
     {{ p.render(u) | safe }}
     <br><br>
