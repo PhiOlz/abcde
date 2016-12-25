@@ -107,7 +107,7 @@ def deletePost(post_id):
             for l in likes:
                 l.delete()
             post.delete()
-    self.redirect('/blog')
+            self.redirect('/blog')
 class DelPost(webapp2.RequestHandler):
     def get(self, post_id):
         if int(post_id) > 0 :
