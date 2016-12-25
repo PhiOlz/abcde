@@ -156,7 +156,8 @@ class Search(webapp2.RequestHandler):
         self.post = Post.all()
         self.response.write('<html>')
         for self.comment in self.post:
-            self.response.write('<p1>%s</p1>' % self.comment.subject)
+            self.response.write('<p1>%s</p1><br>' % self.comment.subject)
+        self.response.write("""<a href="/blog">Go Back</a>""")
         self.response.write('</html>')
             
 class FlushDb(BlogHandler):
