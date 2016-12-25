@@ -211,7 +211,7 @@ class Search(webapp2.RequestHandler):
         self.response.write("""<form method="post"><select name="sch">""")
         for p in post:
             self.response.write('<option>%s</option>' % p)
-        self.response.write("""<input type="submit"></input></br>""")
+        self.response.write("""</select><input type="submit"></input></br>""")
         srch = self.request.get('sch')
         posts = db.GqlQuery("select * from Post WHERE subject = '%s'" % srch)
         t = jinja_env.get_template('front.html')
