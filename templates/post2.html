@@ -1,20 +1,20 @@
 <div class="post">
   <div class="post-heading">
     <div class="post-title">
-      {{p.subject}}
+      {{p2.subject}}
     </div>
 
   </div>
 
   <div class="post-content">
-    {{p._render_text | safe}}
+    {{p2._render_text | safe}}
   </div>
   <div class="post-footer">
     <!--<form action='/blog/comment' method='get'> -->
     <!-- Blogger can edit his own blog. Others can like and comment -->
         <div class="post-comment">
                 &nbsp;&nbsp;&nbsp;
-                <a href='/blog/comment/{{p.key().id()}}'>View Comments</a>
+                <a href='/blog/comment/{{p2.key().id()}}'>View Comments</a>
         </div>
     <!-- </form> -->
   </div>
