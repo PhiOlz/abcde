@@ -152,7 +152,7 @@ class EditComment(webapp2.RequestHandler):
             com.put()
             self.redirect('/blog/comment/%s' % str(com.post_id))
 class Search(webapp2.RequestHandler):
-    def get(self):
+    def get(self, post_id):
         if int(post_id) > 0 :
             posts = db.GqlQuery("select * from Post")
             key = db.Key.from_path('Post', int(post_id), parent=blog_key())
