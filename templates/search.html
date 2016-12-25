@@ -1,39 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link type="text/css" rel="stylesheet" href="/static/main.css" />
-    <title>Project Parallel</title>
-</head>
+{% extends "base.html" %}
 
-<body>
-    <header class="header">
-    <table width="100%"><tr>
-        <td align='left'>
-            <a href="/blog" class="main-title">Project Parallel </a>
-        </td>
-        </tr>
-        <tr>
-            <td>&nbsp;</td>
-            <td align='right'>
-                <a href="/blog/newpost/1"> Post a blog</a>
-            </td>
-        </tr>  
-        <tr>
-            <td>&nbsp;</td>
-            <td align='right'>
-                <a href="/blog/search"> Search</a>
-            </td>
-        </tr> 
-        <tr><td colspan=2><hr></td></tr>
-    </table>
-    </header>
-  <div id="content">
-    {% block content %}
-    {% endblock %}
+{% block content %}
+
+
+<div class="post">
+  <div class="post-heading">
+    <div class="post-title">
+      {{p.subject}}
+    </div>
+
+    <div class="post-date">
+      {{p.created.strftime("%b %d, %Y")}}
+    </div>
   </div>
-</body>
+  <div class="post-footer">
+    <!--<form action='/blog/comment' method='get'> -->
+    <!-- Blogger can edit his own blog. Others can like and comment -->
+        <div class="post-comment">
+                &nbsp;&nbsp;&nbsp;
+                <a href='/blog/comment/{{p.key().id()}}'>Go To</a>
+        </div>
+    <!-- </form> -->
+  </div>
+</div>
 
-</html>
+{% endblock %}
