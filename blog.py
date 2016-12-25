@@ -46,14 +46,14 @@ def blog_key(name = 'default'):
     return db.Key.from_path('blogs', name)     
 class BlogFront(webapp2.RequestHandler):
     def get(self):
+            if self.request.get():
+                sch = self.request.get('srch')
+                po = db.GqlQuery("select * from Post where subject=" + sch)
+                t = jinja_env.get_template('permalink.html')
+                self.response.out.write(t.render(p=post))
             posts = db.GqlQuery("select * from Post order by created desc limit 10")
             t = jinja_env.get_template('front.html')
             self.response.out.write(t.render(posts=posts))
-    def search(self):
-            x = self.request.get('search')
-            srch = db.GqlQuery("select * from Post where subject=x")
-            t = jinja_env.get_template('front.html')
-            self.response.out.write(t.render(srch=srch))
 class PostPage(webapp2.RequestHandler):
     def get(self, post_id):
         key = db.Key.from_path('Post', int(post_id), parent=blog_key())
