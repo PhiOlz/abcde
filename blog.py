@@ -202,6 +202,27 @@ class DumpDb(BlogHandler):
             self.response.out.write("<tr><td>id=101 returns post</td></tr>")
         else :
             self.response.out.write("<tr><td>id=101 return None</td></tr>")          
+
+class Search(self):
+    def get(self):
+        p = db.GqlQuery("select subject from Post')
+        post = db.GqlQuery("select * from Post")
+        self.response.write('Search Here: ')
+        self.response.write("""<form method="post"><select name="sch">""")
+        for p in post:
+            self.response.write('<option>%s</option>' % p)
+        self.response.write("""<input type="submit"></input></br>""")
+        srch = self.request.get('sch')
+        posts = db.GqlQuery("select * from Post where subject=" + srch)
+        t = jinja_env.get_template('front.html')
+        self.response.out.write(t.render(posts=posts))
+            
+            
+            
+            
+            
+            
+            
 app = webapp2.WSGIApplication([
        ('/', MainPage),
        ('/blog/?', BlogFront),
@@ -213,5 +234,6 @@ app = webapp2.WSGIApplication([
        ('/blog/comment/([0-9]+)', CommentPost),
        ('/blog/flushdb', FlushDb),
        ('/blog/dumpdb', DumpDb),
+       ('/blog/search', Search),
        ],
       debug=True)
