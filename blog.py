@@ -107,13 +107,13 @@ def deletePost(post_id):
             for l in likes:
                 l.delete()
             post.delete()
-            self.redirect('/blog')
 class DelPost(webapp2.RequestHandler):
     def get(self, post_id):
         if int(post_id) > 0 :
             key = db.Key.from_path('Post', int(post_id), parent=blog_key())
             post = db.get(key)
             deletePost(post.key().id())
+            self.redirect('/blog')
 class DelComment(webapp2.RequestHandler):
     def get(self, comment_id):
         comment=None
