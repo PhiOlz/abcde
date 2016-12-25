@@ -155,7 +155,7 @@ class Search(webapp2.RequestHandler):
     def render(self, user):
         self._render_text = self.content.replace('\n', '<br>')
         t = jinja_env.get_template("post2.html")
-        return t.render(p = self)
+        return t.render(p2 = self)
     def get(self):
         posts = db.GqlQuery("select * from Post order by created desc limit 10")
         t2 = jinja_env.get_template('front.html')
