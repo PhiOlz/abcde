@@ -140,8 +140,6 @@ class CommentPost(webapp2.RequestHandler):
             u=123456789
             com = Comments(parent = blog_key(), post_id = int(post_id), user_id=u, comment = comment)
             com.put()
-            post.count_comment += 1;
-            post.put()
             self.redirect('/blog/')
 class EditComment(webapp2.RequestHandler):
     def get(self, comment_id):
