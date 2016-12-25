@@ -203,7 +203,7 @@ class DumpDb(BlogHandler):
         else :
             self.response.out.write("<tr><td>id=101 return None</td></tr>")          
 
-class Search(self):
+class Search(webapp2.RequestHandler):
     def get(self):
         p = db.GqlQuery("select subject from Post")
         post = db.GqlQuery("select * from Post")
