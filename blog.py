@@ -203,7 +203,7 @@ class DumpDb(BlogHandler):
         else :
             self.response.out.write("<tr><td>id=101 return None</td></tr>")    
             
-class Search(webapp2.RequestHandler)
+class Search(webapp2.RequestHandler):
     def get(self):
         self.response.write("""<table><tr>""")
         for p in posts:
