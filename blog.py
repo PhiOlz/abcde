@@ -205,15 +205,6 @@ class DumpDb(BlogHandler):
 
 class Search(webapp2.RequestHandler):
     def get(self):
-        p = db.GqlQuery("select subject from Post")
-        post = db.GqlQuery("select * from Post")
-        self.response.write('Search Here: ')
-        self.response.write("""<form method="post"><select name="sch">""")
-        for p in post:
-            self.response.write('<option>%s</option>' % p)
-        self.response.write("""</select><input type="submit"></input></form></br>""")
-        srch = self.request.get('sch')
-        posts = db.GqlQuery("select * from Post WHERE subject = '%s'" % srch)
         t = jinja_env.get_template('front.html')
         self.response.out.write(t.render(posts=posts))
             
